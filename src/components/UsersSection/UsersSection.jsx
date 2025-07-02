@@ -55,9 +55,7 @@ function UsersSection() {
       <div className="users-section__actions">
         {page < totalPages ? (
           loading ? (
-            <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 34 }}>
-              <Preloader />
-            </div>
+            <Preloader />
           ) : (
             <button className="button-yellow" onClick={handleShowMore}>
               Show more

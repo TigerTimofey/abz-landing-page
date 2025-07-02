@@ -1,4 +1,4 @@
-.hero-section {
+.welcome-section {
   position: relative;
   width: 100%;
   min-height: 500px;
@@ -87,13 +87,16 @@
     height: 34px;
   }
 }
+.welcome-section::before {
 
+    background: none;
+}
 @media (max-width: 600px) {
-  .hero-section__content {
+  .welcome-section__content {
     padding: 24px 10px 24px 10px;
     max-width: 95vw;
   }
-  .hero-section__title {
+  .welcome-section__title {
     font-size: 28px;
     line-height: 32px;
   }
