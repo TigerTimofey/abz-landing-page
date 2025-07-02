@@ -1,0 +1,248 @@
+.signup-section {
+  background: var(--color-bg-light);
+
+  &__title {
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: center;
+    font-family: var(--font-family);
+    margin-bottom: 50px;
+  }
+}
+
+.signup-form {
+  max-width: 380px;
+  margin: 0 auto;
+  border-radius: 16px;
+  padding: 40px 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.signup-input {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 26px;
+  border: 1.5px solid #D0CFCF;
+  border-radius: 4px;
+  padding: 16px 14px;
+  background: #F8F8F8;
+  color: #000;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.signup-input:focus {
+  border-color: var(--color-secondary);
+}
+
+.signup-hint {
+  font-size: 13px;
+  color: #7E7E7E;
+  margin-top: -18px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+  text-align: left;
+  width: 100%;
+  color: '#ea5924';
+  margin-top: 2;
+}
+
+.signup-hint--phone {
+  position: absolute;
+  left: 0;
+  bottom: -20px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 16px;
+  color: #7E7E7E;
+  pointer-events: none;
+}
+
+.signup-hint--error {
+  color: #ea5924;
+  position: absolute;
+  left: 0;
+  bottom: -36px;
+  margin-left: 16px;
+}
+
+.signup-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 8px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.signup-radio-title {
+  font-size: 16px;
+  font-family: var(--font-family);
+  color: var(--color-text-dark);
+  margin-bottom: 4px;
+  text-align: left;
+  width: 100%;
+  transition: color 0.2s, font-size 0.2s, top 0.2s, background 0.2s;
+  position: relative;
+  z-index: 2;
+  background: transparent;
+padding-bottom: 10px;
+}
+
+.signup-radio-title.text--error,
+.signup-radio-title.text--active.text--error {
+  color: #ea5924 !important;
+  background: #F8F8F8;
+}
+
+.signup-radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  text-align: left;
+}
+
+.signup-upload {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.signup-upload-btn {
+  min-width: 0;
+  height: 54px;
+  background: #F8F8F8;
+  color: var(--color-text-dark);
+  border: 1.5px solid var(--color-text-dark);
+  border-radius: 4px 0 0 4px;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  box-shadow: none;
+  text-transform: none;
+  padding: 0 23px;
+  cursor: pointer;
+}
+
+.signup-upload-label {
+  width: 80%;
+  background: #F8F8F8;
+  border: 1.5px solid #8D8D8D;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  font-size: 15px;
+  font-family: var(--font-family);
+  color: #7E7E7E;
+  padding: 0 14px;
+  height: 54px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.signup-submit {
+  margin-top: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 23px;
+  height: 34px;
+  min-width: 100px;
+  border-radius: 80px;
+  font-size: 16px;
+  font-family: var(--font-family);
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.coolinput {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+  max-width: 100%;
+  margin-bottom: 0;
+}
+
+.coolinput .signup-hint {
+  position: absolute;
+  left: 0;
+  bottom: -18px;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 16px;
+  width: 100%;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.coolinput:not(:last-child) {
+  margin-bottom: 32px;
+}
+
+.coolinput label.text {
+  font-size: 16px;
+  color: #7E7E7E;
+  font-weight: 400;
+  position: absolute;
+  left: 16px;
+  top: 16px;
+  padding: 0 3px;
+  background: transparent;
+  pointer-events: none;
+  transition: 
+    color 0.2s,
+    font-size 0.2s,
+    top 0.2s,
+    background 0.2s;
+  z-index: 2;
+}
+
+.coolinput label.text.text--active {
+  top: -10px;
+  left: 10px;
+  font-size: 13px;
+  color: var(--color-secondary, #818CF8);
+  background: #F8F8F8;
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+// Add error state for label
+.coolinput label.text.text--error,
+.coolinput label.text.text--active.text--error {
+  color: #ea5924 !important;
+  background: #F8F8F8;
+}
+
+.coolinput .signup-input.input {
+  padding: 16px 14px;
+  font-size: 16px;
+  border: 1.5px solid #D0CFCF;
+  border-radius: 4px;
+  background: #F8F8F8;
+  color: #000;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  margin-bottom: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.coolinput .signup-input.input:focus {
+  border-color: var(--color-secondary);
+}
+
+// Add error state for input
+.coolinput .signup-input.input.input--error {
+  border-color: #ea5924 !important;
+}
