@@ -1,17 +1,17 @@
-@import './variables';
-@import './mixins';
+@use './variables';
+@use './mixins';
 
-@import './base/reset';
-@import './base/typography';
+@use './base/reset';
+@use './base/typography';
 
+@use './components/cards';
+@use './components/image';
+@use './components/preloader';
+@use './components/custom-radio';
+@use './components/custom-tooltip';
+@use '../components/Navbar/Navbar';
 
-@import './components/cards';
-@import './components/image';
-@import './components/preloader';
-@import './components/custom-radio';
-@import './components/custom-tooltip';
-@import '../components/Navbar/Navbar';
+@use './utilities/helpers';
 
-@import './utilities/helpers';
-
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap');

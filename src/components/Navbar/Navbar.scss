@@ -1,27 +1,45 @@
-@import '../../styles/components/buttons.scss';
+@use '../../styles/components/buttons.scss';
+
+.navbar-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 65px;
+  background: #fff;
+  z-index: 9;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  pointer-events: none; 
+}
 
 .navbar {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  background: #fff;
+  max-width: 1024px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 18px 40px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   min-height: 60px;
   z-index: 10;
+  background: transparent;
+  transition: padding 0.3s ease;
 
   @media (max-width: 600px) {
-    padding: 12px 8px;
+    padding: 18px 7px;
+  }& {
+  overflow: visible;
   }
 }
 
 .navbar__logo {
-
   display: flex;
   align-items: center;
   justify-content: flex-start;
-
   @media (max-width: 600px) {
     margin-right: auto;
   }
@@ -36,6 +54,8 @@
 .navbar__actions {
   display: flex;
   gap: 10px;
+  align-items: center;
+  overflow: visible; 
 }
 
 .button-yellow {

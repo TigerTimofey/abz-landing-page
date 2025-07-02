@@ -5,6 +5,9 @@ function App() {
   return (
     <>
       <Navbar />
+      <div className="app-container">
+        {/* ...existing code or content... */}
+      </div>
     </>
   )
 }
