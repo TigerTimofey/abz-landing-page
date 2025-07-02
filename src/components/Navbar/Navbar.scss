@@ -1,0 +1,67 @@
+@import '../../styles/components/buttons.scss';
+
+.navbar {
+  width: 100%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  min-height: 60px;
+  z-index: 10;
+
+  @media (max-width: 600px) {
+    padding: 12px 8px;
+  }
+}
+
+.navbar__logo {
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  @media (max-width: 600px) {
+    margin-right: auto;
+  }
+}
+
+.navbar__logo img {
+  height: 26px;
+  width: auto;
+  display: block;
+}
+
+.navbar__actions {
+  display: flex;
+  gap: 10px;
+}
+
+.button-yellow {
+  background: var(--color-primary);
+  color: #000;
+  border: none;
+  text-transform: capitalize;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 80px;
+  padding: 0 23px;
+  height: 34px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+  white-space: nowrap;
+}
+
+.button-yellow:hover,
+.button-yellow:focus {
+  background: var(--color-primary-hover);
+  color: #000;
+  border: none;
+}
+.navbar__btn:focus {
+  background: var(--color-primary-hover);
+  color: #000;
+  border: none;
+}
