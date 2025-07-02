@@ -1,0 +1,25 @@
+.users-section {
+  padding: 96px 0 0 0;
+  background: var(--color-bg-light);
+
+  &__title {
+    margin-top: 30px;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-align: center;
+    font-family: var(--font-family);
+    margin-bottom: 50px;
+  }
+
+  .card-list {
+    margin-bottom: 30px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+  }
+}

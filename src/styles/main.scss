@@ -6,7 +6,7 @@
 
 @use './components/cards';
 @use './components/image';
-@use './components/preloader';
+@use '../components/Preloader/preloader.scss';
 @use '../utils/custom-radio/custom-radio.scss';
 @use '../utils/castom-tooltip/custom-tooltip.scss';
 @use '../components/Navbar/Navbar';

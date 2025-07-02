@@ -25,7 +25,6 @@
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-  margin-top: 66px;
 }
 
 .card img {
@@ -47,6 +46,11 @@
   line-height: 26px;
   letter-spacing: 0;
   text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  display: block;
 }
 
 .card .card-title {
@@ -58,16 +62,9 @@
   text-align: center;
   margin-bottom: 20px;
   margin-top: 0;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: unset;
-  width: 100%;
-  word-break: break-word;
+  max-width: 100%;
   max-height: 52px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
+  display: block;
 }
 
 .card .card-email,
