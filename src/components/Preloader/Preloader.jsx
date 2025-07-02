@@ -5,11 +5,11 @@ function Preloader() {
     <div className="preloader-demo">
       <span style={{ opacity: 0 }}>Loading</span>
       <div>
-        <svg width="48" height="48" viewBox="0 0 48 48">
+        <svg width="28" height="28" viewBox="0 0 28 28">
           <circle
-            cx="24"
-            cy="24"
-            r="20"
+            cx="14"
+            cy="14"
+            r="10"
             fill="none"
             stroke="var(--color-secondary, #00BDD3)"
             strokeWidth="4"
