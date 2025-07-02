@@ -14,7 +14,10 @@ function UsersSection() {
     setLoading(true)
     getUsers({ page: 1, count: 6 })
       .then(data => {
-        setUsers(data.users)
+        const sorted = [...data.users].sort(
+          (a, b) => b.registration_timestamp - a.registration_timestamp
+        )
+        setUsers(sorted)
         setTotalPages(data.total_pages)
         setPage(1)
       })
@@ -26,7 +29,10 @@ function UsersSection() {
     setLoading(true)
     getUsers({ page: page + 1, count: 6 })
       .then(data => {
-        setUsers(prev => [...prev, ...data.users])
+        const sorted = [...data.users].sort(
+          (a, b) => b.registration_timestamp - a.registration_timestamp
+        )
+        setUsers(prev => [...prev, ...sorted])
         setPage(page + 1)
       })
       .finally(() => setLoading(false))
