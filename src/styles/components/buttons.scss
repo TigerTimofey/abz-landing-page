@@ -1,0 +1,28 @@
+.button-yellow {
+  display: inline-block;
+  padding: 0 23px;
+  height: 34px;
+  min-width: 100px;
+  background: var(--color-primary, #F4E041);
+  color: #000;
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  border: none;
+  border-radius: 80px;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover,
+  &:focus {
+    background: var(--color-primary-hover, #FFEE80);
+  }
+
+  &:disabled,
+  &.disabled {
+    background: #B4B4B4;
+    color: #fff;
+    cursor: not-allowed;
+  }
+}

@@ -1,0 +1,24 @@
+.custom-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.custom-tooltip-bubble {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+  background: var(--color-text-dark);
+  color: var(--color-bg-light);
+  font-family: var(--font-family);
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 8px 16px;
+  white-space: nowrap;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  pointer-events: none;
+}
+
