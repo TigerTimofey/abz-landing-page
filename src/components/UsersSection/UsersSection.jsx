@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import './usersSection.scss'
+import './UsersSection.scss'
 import { getUsers } from '../../services/api'
 import photoCover from '../../assets/photo-cover.svg'
 import Preloader from '../Preloader/Preloader'

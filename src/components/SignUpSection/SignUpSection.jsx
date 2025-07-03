@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import './signUpSection.scss'
+import './SignUpSection.scss'
 import { getPositions, getToken, registerUser } from '../../services/api'
 import { isEmail } from '../../utils/validation/isEmail'
 import { isNumber, filterPhoneInput } from '../../utils/validation/isNumber'

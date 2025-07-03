@@ -1,4 +1,4 @@
-import './welcomeBanner.scss'
+import './WelcomeBanner.scss'
 import heroImg from '../../assets/pexels-alexandr-podvalny-1227513.jpeg'
 
 function WelcomeBanner() {
