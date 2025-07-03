@@ -4,7 +4,14 @@ import heroImg from '../../assets/pexels-alexandr-podvalny-1227513.jpeg'
 function WelcomeBanner() {
   return (
     <section className="welcome-section">
-      <img src={heroImg} alt="Hero background" className="welcome-section__bg" />
+      <img
+        src={heroImg}
+        alt="Hero background"
+        className="welcome-section__bg"
+        loading="lazy"
+        width={1170}
+        height={650}
+      />
       <div className="welcome-section__content">
         <h1 className="welcome-section__title">
           Test assignment for front-end developer

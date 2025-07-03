@@ -52,7 +52,13 @@ function UsersSection({ reloadKey }) {
       <div className="card-list">
         {users.map(user => (
           <div className="card" key={user.id}>
-            <img src={user.photo || photoCover} alt={user.name} />
+            <img
+              src={user.photo || photoCover}
+              alt={user.name}
+              loading="lazy"
+              width={70}
+              height={70}
+            />
             <div className="card-title">{user.name}</div>
             <div className="card-position">{user.position}</div>
             <CustomTooltip title={user.email}>
