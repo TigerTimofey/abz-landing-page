@@ -1,5 +1,5 @@
+export function isEmail(email) {
 
-export function isEmail(value) {
-  if (typeof value !== 'string') return false
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+  return /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/.test(email)
 }
+

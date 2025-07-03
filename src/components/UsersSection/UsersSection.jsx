@@ -4,39 +4,46 @@ import { getUsers } from '../../services/api'
 import photoCover from '../../assets/photo-cover.svg'
 import Preloader from '../Preloader/Preloader'
 
-function UsersSection() {
+function UsersSection({ reloadKey }) {
   const [users, setUsers] = useState([])
   const [page, setPage] = useState(1)
   const [totalPages, setTotalPages] = useState(1)
   const [loading, setLoading] = useState(false)
 
-  useEffect(() => {
+  const fetchUsers = async (reset = false) => {
     setLoading(true)
-    getUsers({ page: 1, count: 6 })
-      .then(data => {
-        const sorted = [...data.users].sort(
-          (a, b) => b.registration_timestamp - a.registration_timestamp
-        )
-        setUsers(sorted)
-        setTotalPages(data.total_pages)
-        setPage(1)
-      })
-      .finally(() => setLoading(false))
+    const res = await getUsers(reset ? 1 : page, 6) 
+    if (reset) {
+      setUsers(res.users)
+      setPage(1)
+      setTotalPages(res.total_pages)
+    } else {
+      setUsers(u => [...u, ...res.users])
+      setTotalPages(res.total_pages)
+    }
+    setLoading(false)
+  }
+
+  useEffect(() => {
+    fetchUsers(true)
+    // eslint-disable-next-line
+  }, [reloadKey])
+
+  useEffect(() => {
+    if (page === 1) fetchUsers(true)
+    // eslint-disable-next-line
   }, [])
 
   const handleShowMore = () => {
-    if (page >= totalPages) return
-    setLoading(true)
-    getUsers({ page: page + 1, count: 6 })
-      .then(data => {
-        const sorted = [...data.users].sort(
-          (a, b) => b.registration_timestamp - a.registration_timestamp
-        )
-        setUsers(prev => [...prev, ...sorted])
-        setPage(page + 1)
-      })
-      .finally(() => setLoading(false))
+    if (page < totalPages) {
+      setPage(p => p + 1)
+    }
   }
+
+  useEffect(() => {
+    if (page > 1) fetchUsers()
+    // eslint-disable-next-line
+  }, [page])
 
   return (
     <section className="users-section">

@@ -1,29 +1,61 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './SignUpSection.scss'
 import CustomRadio from '../../utils/custom-radio/CustomRadio'
-import { getPositions } from '../../services/api'
+import { getPositions, getToken, registerUser } from '../../services/api'
 import { isEmail } from '../../utils/validation/isEmail'
 import { isNumber, filterPhoneInput } from '../../utils/validation/isNumber'
 
-function SignUpSection() {
+function validateName(name) {
+  return name.trim().length >= 2 && name.trim().length <= 60
+}
+
+function validatePhoto(file, cb) {
+  if (!file) return 'Photo is required'
+  if (!['image/jpeg', 'image/jpg'].includes(file.type)) return 'Photo must be JPEG/JPG'
+  if (file.size > 5 * 1024 * 1024) return 'Photo must not exceed 5MB'
+
+  const img = new window.Image()
+  const url = URL.createObjectURL(file)
+  img.onload = () => {
+    if (img.width < 70 || img.height < 70) cb('Min resolution is 70x70px')
+    else cb('')
+    URL.revokeObjectURL(url)
+  }
+  img.onerror = () => {
+    cb('Invalid image')
+    URL.revokeObjectURL(url)
+  }
+  img.src = url
+  return null 
+}
+
+function SignUpSection({ onSuccess }) {
   const [positions, setPositions] = useState([])
   const [fields, setFields] = useState({
     name: '',
     email: '',
     phone: '',
-    position: ''
+    position: '',
+    photo: null,
   })
   const [focus, setFocus] = useState({
     name: false,
     email: false,
     phone: false,
-    position: false
+    position: false,
+    photo: false,
   })
   const [errors, setErrors] = useState({
+    name: '',
     email: '',
     phone: '',
-    position: ''
+    position: '',
+    photo: '',
+    submit: '',
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [photoLabel, setPhotoLabel] = useState('Upload your photo')
+  const photoInputRef = useRef()
 
   useEffect(() => {
     getPositions().then(data => {
@@ -31,18 +63,35 @@ function SignUpSection() {
     })
   }, [])
 
+  useEffect(() => {
+    if (!fields.photo) {
+      setErrors(e => ({ ...e, photo: '' }))
+      setPhotoLabel('Upload your photo')
+      return
+    }
+    setPhotoLabel(fields.photo.name)
+    const syncErr = validatePhoto(fields.photo, err => {
+      setErrors(e => ({ ...e, photo: err }))
+    })
+    if (syncErr) setErrors(e => ({ ...e, photo: syncErr }))
+  }, [fields.photo])
+
   const handleChange = e => {
-    const { name, value } = e.target
+    const { name, value, files } = e.target
+    if (name === 'photo') {
+      setFields(f => ({ ...f, photo: files[0] }))
+      return
+    }
     if (name === 'phone') {
       const filtered = filterPhoneInput(value)
-      setFields({ ...fields, [name]: filtered })
+      setFields(f => ({ ...f, [name]: filtered }))
       setErrors(errors => ({
         ...errors,
-        phone: filtered && !isNumber(filtered) ? 'Invalid phone' : ''
+        phone: filtered && !isNumber(filtered) ? 'Phone must start with +380 and have 9 digits after' : ''
       }))
       return
     }
-    setFields({ ...fields, [name]: value })
+    setFields(f => ({ ...f, [name]: value }))
 
     if (name === 'email') {
       setErrors(errors => ({
@@ -56,14 +105,26 @@ function SignUpSection() {
         position: value ? '' : 'Please select your position'
       }))
     }
-  }
-  const handleFocus = e => {
-    setFocus({ ...focus, [e.target.name]: true })
-  }
-  const handleBlur = e => {
-    setFocus({ ...focus, [e.target.name]: false })
+    if (name === 'name') {
+      setErrors(errors => ({
+        ...errors,
+        name: value && !validateName(value) ? 'Name must be 2-60 characters' : ''
+      }))
+    }
   }
 
+  const handleFocus = e => {
+    setFocus(f => ({ ...f, [e.target.name]: true }))
+  }
+  const handleBlur = e => {
+    setFocus(f => ({ ...f, [e.target.name]: false }))
+    if (e.target.name === 'name') {
+      setErrors(errors => ({
+        ...errors,
+        name: fields.name && !validateName(fields.name) ? 'Name must be 2-60 characters' : ''
+      }))
+    }
+  }
   const handlePositionBlur = () => {
     setFocus(f => ({ ...f, position: false }))
     setErrors(errors => ({
@@ -72,31 +133,104 @@ function SignUpSection() {
     }))
   }
 
+  const handlePhotoClick = () => {
+    photoInputRef.current?.click()
+  }
+
   const isFormValid =
-    fields.name.trim() &&
-    fields.email.trim() &&
-    fields.phone.trim() &&
+    validateName(fields.name) &&
+    isEmail(fields.email) &&
+    isNumber(fields.phone) &&
     fields.position &&
+    fields.photo &&
+    !errors.name &&
     !errors.email &&
     !errors.phone &&
-    !errors.position
+    !errors.position &&
+    !errors.photo
+
+  const handleSubmit = async e => {
+    e.preventDefault()
+    setErrors(errs => ({ ...errs, submit: '' }))
+    if (!isFormValid) return
+    setSubmitting(true)
+    try {
+
+      const tokenRes = await getToken()
+      const token = typeof tokenRes === 'string' ? tokenRes : tokenRes.token
+
+      const formData = new FormData()
+      formData.append('name', fields.name.trim())
+      formData.append('email', fields.email.trim())
+      formData.append('phone', fields.phone.trim())
+      formData.append('position_id', Number(fields.position))
+      formData.append('photo', fields.photo)
+
+
+      const res = await registerUser(formData, token)
+      if (res.success) {
+        setFields({
+          name: '',
+          email: '',
+          phone: '',
+          position: '',
+          photo: null,
+        })
+        setPhotoLabel('Upload your photo')
+        setErrors({})
+        if (onSuccess) onSuccess()
+      } else {
+        if (res.message && res.message.includes('Invalid token')) {
+          console.warn('Token was invalid, retrying with a new token...')
+          const retryTokenRes = await getToken()
+          const retryToken = typeof retryTokenRes === 'string' ? retryTokenRes : retryTokenRes.token
+          const retryRes = await registerUser(formData, retryToken)
+          if (retryRes.success) {
+            setFields({
+              name: '',
+              email: '',
+              phone: '',
+              position: '',
+              photo: null,
+            })
+            setPhotoLabel('Upload your photo')
+            setErrors({})
+            if (onSuccess) onSuccess()
+          } else {
+            setErrors(errs => ({ ...errs, submit: retryRes.message || 'Registration failed' }))
+          }
+        } else {
+          setErrors(errs => ({ ...errs, submit: res.message || 'Registration failed' }))
+        }
+      }
+    } catch {
+      setErrors(errs => ({ ...errs, submit: 'Network error' }))
+    } finally {
+      setSubmitting(false)
+    }
+  }
 
   return (
     <section className="signup-section">
       <h2 className="signup-section__title">Working with POST request</h2>
-      <form className="signup-form">
+      <form className="signup-form" onSubmit={handleSubmit} encType="multipart/form-data">
+        {/* Name input */}
         <div className="coolinput">
           <label
             className={
               'text' +
-              ((focus.name || fields.name) ? ' text--active' : '')
+              ((focus.name || fields.name) ? ' text--active' : '') +
+              (errors.name ? ' text--error' : '')
             }
             htmlFor="signup-name"
           >
             Your name
           </label>
           <input
-            className="signup-input input"
+            className={
+              "signup-input input" +
+              (errors.name ? " input--error" : "")
+            }
             id="signup-name"
             type="text"
             name="name"
@@ -107,6 +241,11 @@ function SignUpSection() {
             placeholder=""
             autoComplete="off"
           />
+          {errors.name && (
+            <div className="signup-hint" style={{ color: '#ea5924' }}>
+              {errors.name}
+            </div>
+          )}
         </div>
         {/* Email input */}
         <div className="coolinput">
@@ -198,7 +337,7 @@ function SignUpSection() {
               <CustomRadio
                 key={pos.id}
                 name="position"
-                value={pos.id}
+                value={String(pos.id)}
                 label={pos.name}
                 checked={fields.position === String(pos.id)}
                 onChange={handleChange}
@@ -211,17 +350,44 @@ function SignUpSection() {
             </div>
           )}
         </div>
+        {/* Photo upload */}
         <div className="signup-upload">
-          <button type="button" className="signup-upload-btn">Upload</button>
-          <span className="signup-upload-label">Upload your photo</span>
+          <input
+            type="file"
+            name="photo"
+            accept="image/jpeg,image/jpg"
+            style={{ display: 'none' }}
+            ref={photoInputRef}
+            onChange={handleChange}
+          />
+          <button
+            type="button"
+            className="signup-upload-btn"
+            onClick={handlePhotoClick}
+            tabIndex={0}
+          >
+            Upload
+          </button>
+          <span className="signup-upload-label">{photoLabel}</span>
         </div>
+        {errors.photo && (
+          <div className="signup-hint" style={{ color: '#ea5924', marginBottom: 8 }}>
+            {errors.photo}
+          </div>
+        )}
+        {/* Submit */}
         <button
           className="button-yellow signup-submit"
           type="submit"
-          disabled={!isFormValid}
+          disabled={!isFormValid || submitting}
         >
-          Sign up
+          {submitting ? 'Submitting...' : 'Sign up'}
         </button>
+        {errors.submit && (
+          <div className="signup-hint" style={{ color: '#ea5924', marginTop: 8 }}>
+            {errors.submit}
+          </div>
+        )}
       </form>
     </section>
   )
