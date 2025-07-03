@@ -12,7 +12,7 @@ function WelcomeBanner() {
           className="welcome-section__bg"
           width={1170}
           height={650}
-          fetchpriority="high"
+          fetchPriority="high"
         />
       </picture>
       <div className="welcome-section__content">
