@@ -3,6 +3,7 @@ import './usersSection.scss'
 import { getUsers } from '../../services/api'
 import photoCover from '../../assets/photo-cover.svg'
 import Preloader from '../Preloader/Preloader'
+import CustomTooltip from '../../utils/custom-tooltip/CustomTooltip'
 
 function UsersSection({ reloadKey }) {
   const [users, setUsers] = useState([])
@@ -54,7 +55,9 @@ function UsersSection({ reloadKey }) {
             <img src={user.photo || photoCover} alt={user.name} />
             <div className="card-title">{user.name}</div>
             <div className="card-position">{user.position}</div>
-            <div className="card-email">{user.email}</div>
+            <CustomTooltip title={user.email}>
+              <div className="card-email">{user.email}</div>
+            </CustomTooltip>
             <div className="card-phone">{user.phone}</div>
           </div>
         ))}

@@ -39,6 +39,7 @@
     transform 0.3s;
   will-change: opacity, transform, width, height, margin;
   justify-self: center;
+  z-index: 1;
 }
 
 .card img {
@@ -85,6 +86,11 @@
 .card .card-phone {
   color: var(--color-text-light);
   word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  display: block;
 }
 
 @media (min-width: 1024px) {

@@ -1,7 +1,8 @@
 .custom-tooltip-wrapper {
   position: relative;
-  display: inline-block;
+  display: block; 
   cursor: pointer;
+  width: 100%;   
 }
 
 .custom-tooltip-bubble {
@@ -10,15 +11,19 @@
   top: 100%;
   transform: translateX(-50%);
   margin-top: 8px;
-  background: var(--color-text-dark);
-  color: var(--color-bg-light);
+  background: var(--color-black);
+  color: var(--color-disabled-white);
   font-family: var(--font-family);
   font-size: 16px;
   border-radius: 4px;
-  padding: 8px 16px;
+  padding: 3px 16px;
   white-space: nowrap;
-  z-index: 100;
+  z-index: 9999;
   box-shadow: 0 2px 8px var(--color-shadow-tooltip);
-  pointer-events: none;
+  display: flex;
+  align-items: center;
+  height: 32px;
+  box-sizing: border-box;
+
 }
 
