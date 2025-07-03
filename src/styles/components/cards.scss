@@ -1,6 +1,6 @@
 .card-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 20px;
   justify-content: center;
   padding: 20px;
@@ -88,7 +88,14 @@
   word-break: break-all;
 }
 
-@media (max-width: 1241px) and (min-width: 651px) {
+@media (min-width: 1024px) {
+  .card-list {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 940px;
+  }
+}
+
+@media (max-width: 1023px) and (min-width: 651px) {
   .card-list {
     grid-template-columns: repeat(2, 1fr);
     max-width: 620px;
