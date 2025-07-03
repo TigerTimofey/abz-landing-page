@@ -12,12 +12,11 @@
 }
 
 .card {
-  background: var(--color-bg-white);
+  background: var(--color-disabled-white);
   border-radius: 16px;
   padding: 20px;
   width: 282px;
   height: 254px;
-  box-shadow: 0 2px 8px var(--color-shadow);
   font-family: var(--font-family);
   font-weight: 400;
   font-size: 16px;
@@ -47,7 +46,7 @@
   height: 70px;
   border-radius: 50%;
   margin-bottom: 20px;
-  background: var(--color-bg-light);
+  background: var(--color-disabled-white);
   object-fit: cover;
 }
 
@@ -84,7 +83,7 @@
 
 .card .card-email,
 .card .card-phone {
-  color: var(--color-card-email);
+  color: var(--color-text-light);
   word-break: break-all;
 }
 

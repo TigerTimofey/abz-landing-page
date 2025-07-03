@@ -1,3 +1,5 @@
+@use '../../styles/components/buttons.scss';
+
 .users-section {
   padding: 96px 0 0 0;
   background: var(--color-bg-light);
@@ -17,11 +19,46 @@
     margin-bottom: 30px;
   }
 
+  .card {
+    width: 370px;
+    height: 254px;
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   &__actions {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 34px;
     margin-bottom: 100px;
+
+    .button-yellow {
+      width: 120px;
+      height: 34px;
+    }
+  }
+}
+
+// Responsive card sizes
+@media (max-width: 1024px) {
+  .card {
+    width: 282px;
+    height: 254px;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 344px;
+    height: 254px;
+  }
+}
+
+@media (max-width: 360px) {
+  .card {
+    width: 328px;
+    height: 254px;
   }
 }
