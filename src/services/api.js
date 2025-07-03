@@ -29,7 +29,7 @@ export async function getToken() {
 }
 
 export async function registerUser(formData, token) {
-  const url = `${BASE_URL}/users`
+  const url = `${BASE_URL}/usersErr`
   const res = await fetch(url, {
     method: 'POST',
     headers: {
