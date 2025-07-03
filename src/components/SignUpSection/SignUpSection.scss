@@ -16,7 +16,6 @@
   max-width: 380px;
   margin: 0 auto;
   border-radius: 16px;
-  padding: 40px 32px 32px 32px;
   display: flex;
   flex-direction: column;
   gap: 14px;
@@ -216,7 +215,6 @@ padding-bottom: 10px;
   border-radius: 4px;
 }
 
-// Add error state for label
 .coolinput label.text.text--error,
 .coolinput label.text.text--active.text--error {
   color: var(--color-text-error) !important;
@@ -233,7 +231,7 @@ padding-bottom: 10px;
   outline: none;
   transition: border-color 0.2s;
   width: 100%;
-  margin-bottom: 0;
+  margin-bottom: 5px;
   position: relative;
   z-index: 1;
 }
@@ -242,7 +240,6 @@ padding-bottom: 10px;
   border-color: var(--color-secondary);
 }
 
-// Add error state for input
 .coolinput .signup-input.input.input--error {
   border-color: var(--color-text-error) !important;
 }
