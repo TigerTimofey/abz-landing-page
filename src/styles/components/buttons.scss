@@ -3,8 +3,8 @@
   padding: 0 23px;
   height: 34px;
   min-width: 100px;
-  background: var(--color-primary, #F4E041);
-  color: #000;
+  background: var(--color-primary);
+  color: var(--color-black);
   font-family: var(--font-family);
   font-size: 16px;
   font-weight: 400;
@@ -16,13 +16,13 @@
 
   &:hover,
   &:focus {
-    background: var(--color-primary-hover, #FFEE80);
+    background: var(--color-primary-hover);
   }
 
   &:disabled,
   &.disabled {
-    background: #B4B4B4;
-    color: #fff;
+    background: var(--color-disabled-bg);
+    color: var(--color-disabled-text);
     cursor: not-allowed;
   }
 }

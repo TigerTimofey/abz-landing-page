@@ -6,9 +6,9 @@
   left: 0;
   width: 100vw;
   height: 65px;
-  background: #fff;
+  background: var(--color-bg-white);
   z-index: 9;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  box-shadow: 0 2px 8px var(--color-shadow);
   pointer-events: none; 
 }
 
@@ -61,7 +61,7 @@
 
 .button-yellow {
   background: var(--color-primary);
-  color: #000;
+  color: var(--color-black);
   border: none;
   text-transform: capitalize;
   font-family: var(--font-family);
@@ -78,11 +78,11 @@
 .button-yellow:hover,
 .button-yellow:focus {
   background: var(--color-primary-hover);
-  color: #000;
+  color: var(--color-black);
   border: none;
 }
 .navbar__btn:focus {
   background: var(--color-primary-hover);
-  color: #000;
+  color: var(--color-black);
   border: none;
 }

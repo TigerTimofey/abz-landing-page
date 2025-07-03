@@ -10,12 +10,12 @@
 .input-wrapper input[type="file"] {
   width: 100%;
   padding: 16px 14px 16px 14px;
-  border: 1.5px solid #D0CFCF;
+  border: 1.5px solid var(--color-border);
   border-radius: 4px;
   font-size: 16px;
   font-family: var(--font-family);
-  background: #F8F8F8;
-  color: #000;
+  background: var(--color-bg-light);
+  color: var(--color-black);
   transition: border-color 0.2s, box-shadow 0.2s;
   margin-bottom: 0;
   outline: none;
@@ -24,16 +24,16 @@
 
 .input-wrapper input:focus,
 .input-wrapper textarea:focus {
-  border-color: #D0CFCF;
-  color: #7E7E7E;
+  border-color: var(--color-border);
+  color: var(--color-text-light);
   box-shadow: 0 0 0 2px rgba(208, 207, 207, 0.15);
-  background: #F8F8F8;
+  background: var(--color-bg-light);
 }
 
 .input-wrapper input.error,
 .input-wrapper textarea.error {
-  border-color: #d32f2f;
-  background: #fff0f0;
+  border-color: var(--color-border-error);
+  background: var(--color-bg-error);
   color: var(--color-text-dark);
 }
 
@@ -42,9 +42,9 @@
   left: 14px;
   top: 50%;
   transform: translateY(-50%);
-  background: #fff;
+  background: var(--color-bg-white);
   padding: 0 4px;
-  color: #7E7E7E;
+  color: var(--color-text-light);
   font-size: 16px;
   font-family: var(--font-family);
   font-weight: 400;
@@ -65,19 +65,19 @@
   left: 10px;
   font-size: 13px;
   color: var(--color-secondary);
-  background: #fff;
+  background: var(--color-bg-white);
   padding: 0 4px;
 }
 
 .input-wrapper .helper-text {
-  color: #7E7E7E;
+  color: var(--color-text-light);
   font-size: 13px;
   margin-top: 4px;
   margin-left: 2px;
 }
 
 .input-wrapper .error {
-  color: #d32f2f;
+  color: var(--color-border-error);
   font-size: 13px;
   margin-top: 4px;
   margin-left: 2px;
@@ -93,7 +93,7 @@
 .upload-btn-field {
   min-width: 0;
   height: 54px;
-  background: #F8F8F8 !important;
+  background: var(--color-bg-light) !important;
   color: var(--color-text-dark) !important;
   border: 1.5px solid var(--color-text-dark) !important;
   border-radius: 4px 0 0 4px !important;
@@ -104,25 +104,25 @@
   box-shadow: none !important;
   text-transform: none;
   &:hover, &:focus {
-    background: #F8F8F8 !important;
+    background: var(--color-bg-light) !important;
     color: var(--color-text-dark) !important;
     border: 1.5px solid var(--color-text-dark) !important;
   }
   &:disabled {
-    background: #B4B4B4 !important;
-    color: #fff !important;
+    background: var(--color-disabled-bg) !important;
+    color: var(--color-disabled-text) !important;
   }
 }
 
 .upload-input-field {
   width: 80%;
-  background: #F8F8F8;
-  border: 1.5px solid #8D8D8D;
+  background: var(--color-bg-light);
+  border: 1.5px solid var(--color-border-dark);
   border-left: none;
   border-radius: 0 4px 4px 0;
   font-size: 15px; 
   font-family: var(--font-family);
-  color: #7E7E7E;
+  color: var(--color-text-light);
   padding: 0 14px;
   height: 54px;
   box-sizing: border-box;
