@@ -15,9 +15,6 @@ function App() {
       <WelcomeBanner />
       <UsersSection reloadKey={reloadKey} />
       <SignUpSection onSuccess={handleRegistrationSuccess} />
-      <div className="app-container">
-
-      </div>
     </>
   )
 }

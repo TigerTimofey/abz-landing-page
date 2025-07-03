@@ -20,9 +20,23 @@
   --color-disabled-text: #fff;
   --color-card-email: #555;
   --color-black: #000;
+}
 
+body{
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
+  font-family: var(--font-family);
+  color: var(--color-text-dark);
+  background: var(--color-bg-light);
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;  
+  padding: 0;
+}
+
 
