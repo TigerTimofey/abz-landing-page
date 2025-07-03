@@ -42,22 +42,22 @@
 }
 
 // Responsive card sizes
-@media (max-width: 1024px) {
-  .card {
+@media (min-width: 1024px) and (max-width: 2560px) {
+  .users-section .card {
     width: 282px;
     height: 254px;
   }
 }
 
 @media (max-width: 768px) {
-  .card {
+  .users-section .card {
     width: 344px;
     height: 254px;
   }
 }
 
 @media (max-width: 360px) {
-  .card {
+  .users-section .card {
     width: 328px;
     height: 254px;
   }
