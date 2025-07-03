@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import './Custom-tooltip.scss'
+import './custom-tooltip.scss'
 
 function CustomTooltip({ title, children }) {
   const [visible, setVisible] = useState(false)

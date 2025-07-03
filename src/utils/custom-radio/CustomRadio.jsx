@@ -1,4 +1,4 @@
-import './Custom-radio.scss'
+import './custom-radio.scss'
 
 function CustomRadio({ checked, onChange, name, value, ...props }) {
   return (
