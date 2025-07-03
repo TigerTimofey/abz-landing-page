@@ -1,17 +1,20 @@
 import './WelcomeBanner.scss'
-import heroImg from '../../assets/pexels-alexandr-podvalny-1227513.jpeg'
+import heroImgWebp from '../../assets/pexels-alexandr-podvalny-1227513.webp'
 
 function WelcomeBanner() {
   return (
     <section className="welcome-section">
-      <img
-        src={heroImg}
-        alt="Hero background"
-        className="welcome-section__bg"
-        loading="lazy"
-        width={1170}
-        height={650}
-      />
+      <picture>
+        <source srcSet={heroImgWebp} type="image/webp" />
+        <img
+          src={heroImgWebp}
+          alt="Hero background"
+          className="welcome-section__bg"
+          width={1170}
+          height={650}
+          fetchpriority="high"
+        />
+      </picture>
       <div className="welcome-section__content">
         <h1 className="welcome-section__title">
           Test assignment for front-end developer
