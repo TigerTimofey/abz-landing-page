@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
-import './SignUpSection.scss'
+import './signUpSection.scss'
 import CustomRadio from '../../utils/custom-radio/CustomRadio'
 import { getPositions, getToken, registerUser } from '../../services/api'
 import { isEmail } from '../../utils/validation/isEmail'

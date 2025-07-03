@@ -3,8 +3,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: var(--color-text-error, #ea5924);
-  color: #fff;
+  background: var(--color-text-error);
+  color: var(--color-disabled-white);
   padding: 16px 32px;
   border-radius: 8px;
   z-index: 9999;
@@ -20,7 +20,7 @@
 .popup-error__close {
   background: none;
   border: none;
-  color: #fff;
+  color: var(--color-disabled-white);
   font-size: 22px;
   cursor: pointer;
   margin-left: 8px;

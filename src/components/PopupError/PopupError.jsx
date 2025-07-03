@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import './PopupError.scss'
+import './popupError.scss'
 
 function PopupError({ message, onClose, duration = 4000 }) {
   useEffect(() => {
